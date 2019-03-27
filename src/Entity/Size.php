@@ -2,6 +2,7 @@
 
 namespace App\Entity;
 
+use ApiPlatform\Core\Annotation\ApiProperty;
 use ApiPlatform\Core\Annotation\ApiResource;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
@@ -14,9 +15,12 @@ use Doctrine\ORM\Mapping as ORM;
 class Size
 {
     /**
-     * @ORM\Id()
-     * @ORM\GeneratedValue()
-     * @ORM\Column(type="integer")
+     * @var \Ramsey\Uuid\UuidInterface
+     * @ORM\Id
+     * @ORM\Column(type="uuid", unique=true)
+     * @ORM\GeneratedValue(strategy="CUSTOM")
+     * @ORM\CustomIdGenerator(class="Ramsey\Uuid\Doctrine\UuidGenerator")
+     * @ApiProperty(identifier=true)
      */
     private $id;
 
@@ -35,9 +39,20 @@ class Size
         $this->products = new ArrayCollection();
     }
 
-    public function getId(): ?int
+    /**
+     * @return \Ramsey\Uuid\UuidInterface
+     */
+    public function getId(): \Ramsey\Uuid\UuidInterface
     {
         return $this->id;
+    }
+
+    /**
+     * @param \Ramsey\Uuid\UuidInterface $id
+     */
+    public function setId(\Ramsey\Uuid\UuidInterface $id): void
+    {
+        $this->id = $id;
     }
 
     public function getLabel(): ?string
