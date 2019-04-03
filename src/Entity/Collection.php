@@ -76,7 +76,7 @@ class Collection
     {
         if (!$this->collectionProducts->contains($collectionProduct)) {
             $this->collectionProducts[] = $collectionProduct;
-            $collectionProduct->setProduct($this);
+            $collectionProduct->setCollection($this);
         }
 
         return $this;
@@ -87,8 +87,8 @@ class Collection
         if ($this->collectionProducts->contains($collectionProduct)) {
             $this->collectionProducts->removeElement($collectionProduct);
             // set the owning side to null (unless already changed)
-            if ($collectionProduct->getProduct() === $this) {
-                $collectionProduct->setProduct(null);
+            if ($collectionProduct->getCollection() === $this) {
+                $collectionProduct->setCollection(null);
             }
         }
 
