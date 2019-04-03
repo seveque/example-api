@@ -1,0 +1,1201 @@
+{
+	"info": {
+		"_postman_id": "37a2ffe1-4444-4d89-a73c-aa651ced73c5",
+		"name": "example-api Copy",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Product",
+			"item": [
+				{
+					"name": "postProduct",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "8608a12c-d363-4b3f-9511-2a949f77b1d7",
+								"exec": [
+									"pm.test(\"Status code is 201\", function () {",
+									"    pm.response.to.have.status(201);",
+									"});",
+									"",
+									"pm.test(\"setProductId\", function () {",
+									"    var jsonData = pm.response.json();",
+									"    pm.environment.set(\"productId\", jsonData.id);",
+									"});",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"label\": \"produit 1\",\n  \"picture\": {\n    \"label\": \"img1.png\"\n  },\n  \"refs\": [\n  \t{\n  \t\t\"ref\": \"abcde\"\n  \t},\n  \t  \t{\n  \t\t\"ref\": \"qsdfg\"\n  \t}\n  ]\n}"
+						},
+						"url": {
+							"raw": "{{url}}/api/products",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"api",
+								"products"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "getProducts",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "16839e42-2b3c-419d-bb12-b4cd8d9b63f2",
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "{{url}}/api/products",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"api",
+								"products"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "getProduct",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "556a4564-6a42-4c09-95f2-e0450a3f3e00",
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "{{url}}/api/products/{{productId}}",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"api",
+								"products",
+								"{{productId}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "putProduct",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "ed5dfe88-c82e-4fc0-9f10-4c467f67c058",
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"label\": \"produit 1 modifie\",\n    \"picture\": {\n    \"label\": \"img1.png\"\n  }\n  \n}"
+						},
+						"url": {
+							"raw": "{{url}}/api/products/{{productId}}",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"api",
+								"products",
+								"{{productId}}"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Size",
+			"item": [
+				{
+					"name": "postSize",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "b270a65c-b7cf-4ae3-af2b-15b6277120c9",
+								"exec": [
+									"pm.test(\"Status code is 201\", function () {",
+									"    pm.response.to.have.status(201);",
+									"});",
+									"",
+									"pm.test(\"setSizeId\", function () {",
+									"    var jsonData = pm.response.json();",
+									"    pm.environment.set(\"sizeId\", jsonData.id);",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"type": "text",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"label\": \"S\"\n}"
+						},
+						"url": {
+							"raw": "{{url}}/api/sizes",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"api",
+								"sizes"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "postSize Copy",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "b270a65c-b7cf-4ae3-af2b-15b6277120c9",
+								"exec": [
+									"pm.test(\"Status code is 201\", function () {",
+									"    pm.response.to.have.status(201);",
+									"});",
+									"",
+									"pm.test(\"setSizeId2\", function () {",
+									"    var jsonData = pm.response.json();",
+									"    pm.environment.set(\"sizeId2\", jsonData.id);",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"type": "text",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"label\": \"M\"\n}"
+						},
+						"url": {
+							"raw": "{{url}}/api/sizes",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"api",
+								"sizes"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "getSizes",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "b270a65c-b7cf-4ae3-af2b-15b6277120c9",
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"type": "text",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "{{url}}/api/sizes",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"api",
+								"sizes"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "getSize",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "b270a65c-b7cf-4ae3-af2b-15b6277120c9",
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"type": "text",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "{{url}}/api/sizes/{{sizeId}}",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"api",
+								"sizes",
+								"{{sizeId}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "putSize",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "b270a65c-b7cf-4ae3-af2b-15b6277120c9",
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"type": "text",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"label\": \"S modifié\"\n}"
+						},
+						"url": {
+							"raw": "{{url}}/api/sizes/{{sizeId}}",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"api",
+								"sizes",
+								"{{sizeId}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "addSizeToProduct",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"sizes\": [\n\t\t\"/api/sizes/{{sizeId}}\",\n\t\t\"/api/sizes/{{sizeId2}}\"\n\t]\n\t\n}"
+						},
+						"url": {
+							"raw": "{{url}}/api/products/{{productId}}",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"api",
+								"products",
+								"{{productId}}"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Collection",
+			"item": [
+				{
+					"name": "postCollection",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "b270a65c-b7cf-4ae3-af2b-15b6277120c9",
+								"exec": [
+									"pm.test(\"Status code is 201\", function () {",
+									"    pm.response.to.have.status(201);",
+									"});",
+									"",
+									"pm.test(\"setCollectionId\", function () {",
+									"    var jsonData = pm.response.json();",
+									"    pm.environment.set(\"collectionId\", jsonData.id);",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"type": "text",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"label\": \"printemps 2019\"\n}"
+						},
+						"url": {
+							"raw": "{{url}}/api/collections",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"api",
+								"collections"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "getCollections",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "b270a65c-b7cf-4ae3-af2b-15b6277120c9",
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"type": "text",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "{{url}}/api/collections",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"api",
+								"collections"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "getCollection",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "b270a65c-b7cf-4ae3-af2b-15b6277120c9",
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"type": "text",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "{{url}}/api/collections/{{collectionId}}",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"api",
+								"collections",
+								"{{collectionId}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "putCollection",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "b270a65c-b7cf-4ae3-af2b-15b6277120c9",
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"type": "text",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"label\": \"printemps 2019 modifié\"\n}"
+						},
+						"url": {
+							"raw": "{{url}}/api/collections/{{collectionId}}",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"api",
+								"collections",
+								"{{collectionId}}"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "CollectionProduct",
+			"item": [
+				{
+					"name": "postCollectionProduct",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "dc019005-194c-4070-a3eb-8e874ee996ef",
+								"exec": [
+									"pm.test(\"Status code is 201\", function () {",
+									"    pm.response.to.have.status(201);",
+									"});",
+									"",
+									"pm.test(\"setProductCollectionId\", function () {",
+									"    var jsonData = pm.response.json();",
+									"    pm.environment.set(\"pcId\", jsonData.id);",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"type": "text",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\n\t\"collection\": \"/api/collections/{{collectionId}}\",\n\t\"product\": \"/api/products/{{productId}}\",\n\t\"availabilityDate\": \"2019-04-01T08:25:43-05:00\"\n}"
+						},
+						"url": {
+							"raw": "{{url}}/api/collection_products",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"api",
+								"collection_products"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "getCollectionProduct",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "d3f00051-7005-4d86-b0db-66f4f373340a",
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"type": "text",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "{{url}}/api/collection_products",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"api",
+								"collection_products"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "putCollectionProduct",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "f32867f5-543f-4807-9046-ef5475a0ea4e",
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"type": "text",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"availabilityDate\": \"2019-03-06T11:25:43-05:00\"\n}"
+						},
+						"url": {
+							"raw": "{{url}}/api/collection_products/{{pcId}}",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"api",
+								"collection_products",
+								"{{pcId}}"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Review",
+			"item": [
+				{
+					"name": "postReview",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "0981f4a4-c75f-41e7-8d41-f316a1dc7787",
+								"exec": [
+									"pm.test(\"Status code is 201\", function () {",
+									"    pm.response.to.have.status(201);",
+									"});",
+									"",
+									"pm.test(\"setReviewId\", function () {",
+									"    var jsonData = pm.response.json();",
+									"    pm.environment.set(\"reviewId\", jsonData.id);",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"comment\": \"Très bon produit\",\n\t\"product\": \"/api/products/{{productId}}\"\n}"
+						},
+						"url": {
+							"raw": "{{url}}/api/reviews",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"api",
+								"reviews"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "getReviewProduct",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "b270a65c-b7cf-4ae3-af2b-15b6277120c9",
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"type": "text",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "{{url}}/api/reviews",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"api",
+								"reviews"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "getReviewsProduct",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "b270a65c-b7cf-4ae3-af2b-15b6277120c9",
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"type": "text",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "{{url}}/api/reviews",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"api",
+								"reviews"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "putReviewProduct",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "9ceaaefc-84cb-47f8-a2e4-e8edf9b7adf2",
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"type": "text",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"comment\": \"test 3\"\n}"
+						},
+						"url": {
+							"raw": "{{url}}/api/reviews/{{reviewId}}",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"api",
+								"reviews",
+								"{{reviewId}}"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "ProductFull",
+			"item": [
+				{
+					"name": "getProduct",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "6e53db34-2a7e-4119-98ac-2410db2947b4",
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "{{url}}/api/products/{{productId}}",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"api",
+								"products",
+								"{{productId}}"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	]
+}

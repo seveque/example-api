@@ -16,9 +16,10 @@
         "symfony/yaml": "4.2.*"
     },
     "require-dev": {
-      "symfony/debug-pack": "^1.0",
-      "symfony/maker-bundle": "^1.11",
-      "symfony/web-server-bundle": "4.2.*"
+        "phpro/grumphp": "^0.15.0",
+        "symfony/debug-pack": "^1.0",
+        "symfony/maker-bundle": "^1.11",
+        "symfony/web-server-bundle": "4.2.*"
     },
     "config": {
         "preferred-install": {
