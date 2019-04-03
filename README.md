@@ -41,7 +41,8 @@ Ajout d'un type uuid à la place d'un integer pour l'id
 #### step-4
 Ajout docker et upgrade version api-platform
 
-
+#### step-5
+Ajout grumphp et php-cs-fixer et quelques autres outils de qualité
 
 
 
