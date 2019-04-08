@@ -65,7 +65,6 @@ class Product
      */
     private $collectionProducts;
 
-
     public function __construct()
     {
         $this->collectionProducts = new ArrayCollection();

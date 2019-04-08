@@ -13,7 +13,6 @@ use Doctrine\ORM\Mapping as ORM;
  */
 class Collection
 {
-
     /**
      * @var \Ramsey\Uuid\UuidInterface
      * @ORM\Id
